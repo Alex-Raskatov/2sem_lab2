@@ -68,7 +68,7 @@ int main () {
 
     std::ofstream file("shaker_sort_data.txt");
 
-    unsigned start = 1000, stop = 100000, step = 1000;
+    unsigned start = 100, stop = 1000, step = 100;
 
     for (unsigned size = start; size < stop; size += step) {
 
@@ -84,9 +84,9 @@ int main () {
         auto global_end = std::chrono::steady_clock::now();
         auto time_span = std::chrono::duration_cast<std::chrono::microseconds>(global_end - global_begin);
 
-        for (int i = 0; i < 1000; i++) {
+        for (int i = 0; i < 100; i++) {
 
-            for (int i = SIZE; i < SIZE; ++i) {
+            for (int i = 0; i < SIZE; ++i) {
                 arr[i] = dstr(rnd);
             }
 
@@ -101,6 +101,8 @@ int main () {
         }
 
         file << size << " " << time_span.count() << '\n';
+        std::cout << size << " " << time_span.count() << '\n';
+
 
     }
 

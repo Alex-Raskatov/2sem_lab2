@@ -85,9 +85,9 @@ unsigned shell_sort_3(unsigned arr[], unsigned fib_arr[], unsigned const begin_i
 
 int main() {
 
-    std::ofstream file("shell_sort_3_data.txt");
+    std::ofstream file("shell_sort_1_data.txt");
 
-    unsigned start = 1000, stop = 100000, step = 1000;
+    unsigned start = 100, stop = 1000, step = 100;
 
     unsigned fib_arr[40];
 
@@ -107,15 +107,15 @@ int main() {
         auto global_end = std::chrono::steady_clock::now();
         auto time_span = std::chrono::duration_cast<std::chrono::nanoseconds>(global_end - global_begin);
 
-        for (int i = 0; i < 1000; i++) {
+        for (int i = 0; i < 100; i++) {
 
-            for (int i = SIZE; i < SIZE; ++i) {
+            for (int i = 0; i < SIZE; ++i) {
                 arr[i] = dstr(rnd);
             }
 
             auto begin = std::chrono::steady_clock::now();
 
-            shell_sort_3(arr, fib_arr, 0, SIZE - 1);
+            shell_sort_1(arr, 0, SIZE - 1);
 
             auto end = std::chrono::steady_clock::now();
 
