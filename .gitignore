@@ -1,4 +1,6 @@
 /venv
+/tex
 *_bin
 *txt
 *png
+lab-1 infa.py

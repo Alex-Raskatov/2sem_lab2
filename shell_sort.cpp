@@ -2,13 +2,14 @@
 #include <iostream>
 #include <random>
 #include <chrono>
+#include <fstream>
 
-void fib(unsigned fib_arr[], unsigned n){
+void fib(unsigned fib_arr[], unsigned size){
 
     fib_arr[0] = 1;
     fib_arr[1] = 2;
 
-    for (int i = 2; i <= n; i++){
+    for (int i = 2; i <= size; i++){
         fib_arr[i] = fib_arr[i-1] + fib_arr[i-2];
     }
 }
@@ -84,38 +85,46 @@ unsigned shell_sort_3(unsigned arr[], unsigned fib_arr[], unsigned const begin_i
 
 int main() {
 
-    unsigned seed = 1003;
-    std::default_random_engine rnd(seed);
-    std::uniform_int_distribution<unsigned> dist(0, 20);
+    std::ofstream file("shell_sort_3_data.txt");
 
-    unsigned fib_arr[38];
+    unsigned start = 1000, stop = 100000, step = 1000;
 
-    fib(fib_arr, 37);
+    unsigned fib_arr[40];
 
-    for (int i = 0; i < 10; i++) {
+    fib(fib_arr, 39);
 
-        unsigned arr[20];
+    for (unsigned size = start; size < stop; size += step) {
 
-        for (int j = 0; j < 20; j++) {
+        const unsigned SIZE = size;
 
-            arr[j] = dist(rnd);
+        unsigned seed = 10*SIZE % 8191;
+        std::default_random_engine rnd(seed);
+        std::uniform_int_distribution<int> dstr(0, SIZE);
+
+        unsigned arr[SIZE];
+
+        auto global_begin = std::chrono::steady_clock::now();
+        auto global_end = std::chrono::steady_clock::now();
+        auto time_span = std::chrono::duration_cast<std::chrono::nanoseconds>(global_end - global_begin);
+
+        for (int i = 0; i < 1000; i++) {
+
+            for (int i = SIZE; i < SIZE; ++i) {
+                arr[i] = dstr(rnd);
+            }
+
+            auto begin = std::chrono::steady_clock::now();
+
+            shell_sort_3(arr, fib_arr, 0, SIZE - 1);
+
+            auto end = std::chrono::steady_clock::now();
+
+            time_span += std::chrono::duration_cast<std::chrono::nanoseconds>(end - begin);
+
         }
 
-        for (int j = 0; j < 20; j++) {
+        file << size << " " << time_span.count() << '\n';
 
-            std::cout << arr[j] << ' ';
-        }
-        std::cout << '\n';
-
-        shell_sort_1(arr, 0, 19);
-        // shell_sort_1(arr, 0, 19);
-        // shell_sort_3(arr, fib_arr, 0, 19);
-
-        for (int j = 0; j < 20; j++) {
-
-            std::cout << arr[j] << ' ';
-        }
-        std::cout << "\n\n";
     }
 
     return 0;
