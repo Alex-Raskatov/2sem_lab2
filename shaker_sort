@@ -1,0 +1,5 @@
+#!/bin/bash
+
+g++ shaker_sort.cpp -o shaker_sort_bin
+
+./shaker_sort_bin

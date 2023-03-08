@@ -1,0 +1,5 @@
+#!/bin/bash
+
+g++ comb_sort.cpp -o comb_sort_bin
+
+./comb_sort_bin

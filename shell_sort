@@ -1,0 +1,5 @@
+#!/bin/bash
+
+g++ shell_sort.cpp -o shell_sort_bin
+
+./shell_sort_bin
