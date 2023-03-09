@@ -2,29 +2,9 @@
 #include <random>
 #include <chrono>
 #include <fstream>
+#include "comb.h"
 
-unsigned comb_sort( unsigned arr[], unsigned const begin_idx, unsigned const end_idx) {
-    
-    unsigned step = end_idx - begin_idx;
 
-    unsigned counter = 0;
-
-    while (step > 0) {
-        
-        for (int i = begin_idx; i + step <= end_idx; i++) {
-            if (arr[i] > arr[i + step]) {
-                unsigned tmp = arr[i];
-                arr[i] = arr[i + step];
-                arr[i + step] = tmp;
-                ++counter;
-            }
-        }
-
-        step /= 2;
-    }
-
-    return counter;
-}
 
 int main() {
 

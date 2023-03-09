@@ -85,7 +85,7 @@ unsigned shell_sort_3(unsigned arr[], unsigned fib_arr[], unsigned const begin_i
 
 int main() {
 
-    std::ofstream file("shell_sort_1_data.txt");
+    std::ofstream file("shell_sort_3_data.txt");
 
     unsigned start = 100, stop = 1000, step = 100;
 
@@ -115,7 +115,7 @@ int main() {
 
             auto begin = std::chrono::steady_clock::now();
 
-            shell_sort_1(arr, 0, SIZE - 1);
+            shell_sort_3(arr, fib_arr, 0, SIZE - 1);
 
             auto end = std::chrono::steady_clock::now();
 
