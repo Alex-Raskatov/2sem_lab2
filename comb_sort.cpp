@@ -2,9 +2,8 @@
 #include <random>
 #include <chrono>
 #include <fstream>
+#include <algorithm>
 #include "comb.h"
-
-
 
 int main() {
 
@@ -19,7 +18,6 @@ int main() {
 
         unsigned seed = 10*SIZE % 8191;
         std::default_random_engine rnd(seed);
-        std::uniform_int_distribution<int> dstr(0, SIZE);
 
         unsigned arr[SIZE];
 
@@ -31,9 +29,11 @@ int main() {
 
         for (int i = 0; i < 100; i++) {
 
-            for (int i = 0; i < SIZE; ++i) {
-                arr[i] = dstr(rnd);
+            for (int j = 0; j < SIZE; ++i) {
+                arr[j] = j;
             }
+
+            std::shuffle(&arr[0], &arr[SIZE], rnd);
 
             auto begin = std::chrono::steady_clock::now();
 
