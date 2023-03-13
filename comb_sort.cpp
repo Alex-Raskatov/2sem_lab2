@@ -10,7 +10,7 @@ int main() {
     std::ofstream file_time("comb_sort_data.txt");
     std::ofstream file_per("comb_sort_per_data.txt");
 
-    unsigned start = 100, stop = 1000, step = 100;
+    unsigned start = 100, stop = 2000, step = 100;
 
     for (unsigned size = start; size < stop; size += step) {
 
@@ -29,7 +29,7 @@ int main() {
 
         for (int i = 0; i < 100; i++) {
 
-            for (int j = 0; j < SIZE; ++i) {
+            for (int j = 0; j < SIZE; ++j) {
                 arr[j] = j;
             }
 

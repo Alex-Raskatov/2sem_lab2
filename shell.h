@@ -13,9 +13,9 @@ void fib(unsigned fib_arr[], unsigned size){
 
 unsigned shell_sort_1( unsigned arr[], unsigned const begin_idx, unsigned const end_idx) {
 
-    unsigned size = end_idx - begin_idx + 1;
+    unsigned size = end_idx - begin_idx + 1, counter = 0;
 
-    unsigned s = size / 2;
+    unsigned s = size;
 
     while (s > 0) {
         for (int i = s; i < size; ++i) {
@@ -23,18 +23,19 @@ unsigned shell_sort_1( unsigned arr[], unsigned const begin_idx, unsigned const 
                 int temp = arr[j];
                 arr[j] = arr[j + s];
                 arr[j + s] = temp;
+                counter++;
             }
         }
 
         s /= 2;
     }
 
-    return 0;
+    return counter;
 }
 
 unsigned shell_sort_2( unsigned arr[], unsigned const begin_idx, unsigned const end_idx) {
 
-    unsigned size = end_idx - begin_idx + 1;
+    unsigned size = end_idx - begin_idx + 1, counter = 0;
 
     unsigned i = std::log2(size + 1), s = std::pow(2, i) - 1;
 
@@ -44,18 +45,19 @@ unsigned shell_sort_2( unsigned arr[], unsigned const begin_idx, unsigned const 
                 int temp = arr[j];
                 arr[j] = arr[j + s];
                 arr[j + s] = temp;
+                counter++;
             }
         }
         --i;
         s = std::pow(2, i) - 1;
     }
 
-    return 0;
+    return counter;
 }
 
 unsigned shell_sort_3(unsigned arr[], unsigned fib_arr[], unsigned const begin_idx, unsigned const end_idx) {
 
-    unsigned size = end_idx - begin_idx + 1;
+    unsigned size = end_idx - begin_idx + 1, counter = 0;
 
     unsigned i = 0;
 
@@ -71,11 +73,12 @@ unsigned shell_sort_3(unsigned arr[], unsigned fib_arr[], unsigned const begin_i
                 int temp = arr[j];
                 arr[j] = arr[j + s];
                 arr[j + s] = temp;
+                counter++;
             }
         }
         --i;
         s = fib_arr[i];
     }
 
-    return 0;
+    return counter;
 }

@@ -10,9 +10,10 @@
 
 int main() {
 
-    std::ofstream file("shell_sort_3_data.txt");
+    std::ofstream file_time("shell_1_sort_data.txt");
+    std::ofstream file_per("shell_1_sort_per_data.txt");
 
-    unsigned start = 100, stop = 1000, step = 100;
+    unsigned start = 100, stop = 5000, step = 100;
 
     unsigned fib_arr[40];
 
@@ -22,11 +23,11 @@ int main() {
 
         const unsigned SIZE = size;
 
-        unsigned seed = 10*SIZE % 8191;
+        unsigned seed = 11*SIZE % 8191;
         std::default_random_engine rnd(seed);
         std::uniform_int_distribution<int> dstr(0, SIZE);
 
-        unsigned arr[SIZE];
+        unsigned arr[SIZE], counter = 0;
 
         auto global_begin = std::chrono::steady_clock::now();
         auto global_end = std::chrono::steady_clock::now();
@@ -34,7 +35,7 @@ int main() {
 
         for (int i = 0; i < 100; i++) {
 
-            for (int j = 0; j < SIZE; ++i) {
+            for (int j = 0; j < SIZE; ++j) {
                 arr[j] = j;
             }
 
@@ -42,7 +43,7 @@ int main() {
 
             auto begin = std::chrono::steady_clock::now();
 
-            shell_sort_3(arr, fib_arr, 0, SIZE - 1);
+            counter += shell_sort_1(arr, 0, SIZE - 1);
 
             auto end = std::chrono::steady_clock::now();
 
@@ -50,9 +51,13 @@ int main() {
 
         }
 
-        file << size << " " << time_span.count() << '\n';
+        file_time << size << " " << time_span.count() << '\n';
+        file_per << size << " " << counter << '\n';
 
     }
+
+    file_time.close();
+    file_per.close();
 
     return 0;
 }

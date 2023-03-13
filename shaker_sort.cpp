@@ -7,7 +7,7 @@
 
 int main () {
 
-    std::ofstream file("shaker_sort_for_data.txt");
+    std::ofstream file("shaker_sort_data.txt");
 
     unsigned start = 100, stop = 1000, step = 100;
 
@@ -27,7 +27,7 @@ int main () {
 
         for (int i = 0; i < 100; i++) {
 
-            for (int j = 0; j < SIZE; ++i) {
+            for (int j = 0; j < SIZE; ++j) {
                 arr[j] = j;
             }
 
